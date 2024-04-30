@@ -239,6 +239,8 @@ jobs:
           export KSU_EXPECTED_SIZE=${{ env.KSU_EXPECTED_SIZE }}
           export KSU_EXPECTED_HASH=${{ env.KSU_EXPECTED_HASH }}
         fi
+        mkdir -p out
+        
 
         if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin/aarch64-none-elf-gcc ]; then
             make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.KERNEL_CONFIG }}
