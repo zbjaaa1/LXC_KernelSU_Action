@@ -174,6 +174,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin:$PATH
+        export CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin/arm-linux-gnueabihf-
         export KBUILD_BUILD_HOST=Github-Action
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         if [ ! -z ${{ env.KSU_EXPECTED_SIZE }} ] && [ ! -z ${{ env.KSU_EXPECTED_HASH }} ]; then
