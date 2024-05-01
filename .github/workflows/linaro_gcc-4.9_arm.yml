@@ -1,4 +1,4 @@
-name: Build kernel by linaro_gcc-4.8_arm
+name: Build kernel by linaro_gcc-4.9_arm
 on:
   watch:
     types: [started]
