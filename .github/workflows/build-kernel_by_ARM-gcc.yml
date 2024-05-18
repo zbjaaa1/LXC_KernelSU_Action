@@ -244,11 +244,11 @@ jobs:
         
 
         if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin/aarch64-none-elf-gcc ]; then
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.EXTRA_CMDS }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-none-eabi- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-none-eabi- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.EXTRA_CMDS }}
         else
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.EXTRA_CMDS }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-eabi- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-eabi- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.EXTRA_CMDS }}
         fi
 
     - name: Check a kernel output files
