@@ -174,17 +174,15 @@ jobs:
     - name: Build kernel
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin:$PATH
-        export CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin/arm-linux-gnueabihf-
+        export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin:$PATH
         export KBUILD_BUILD_HOST=Github-Action
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         if [ ! -z ${{ env.KSU_EXPECTED_SIZE }} ] && [ ! -z ${{ env.KSU_EXPECTED_HASH }} ]; then
           export KSU_EXPECTED_SIZE=${{ env.KSU_EXPECTED_SIZE }}
           export KSU_EXPECTED_HASH=${{ env.KSU_EXPECTED_HASH }}
         fi 
-        mkdir -p out
-        make -j$(nproc --all) KBUILD_CFLAGS=-w O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-linux-gnueabihf-  CROSS_COMPILE_ARM32=arm-linux-gnueabihf-  ${{ env.KERNEL_CONFIG }}
-        make -j$(nproc --all) KBUILD_CFLAGS=-w O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-linux-gnueabihf- CROSS_COMPILE_ARM32=arm-linux-gnueabihf-
+        make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-linux-gnueabihf- CROSS_COMPILE_ARM32=arm-linux-gnueabihf- ${{ env.KERNEL_CONFIG }}
+        make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=arm-linux-gnueabihf- CROSS_COMPILE_ARM32=arm-linux-gnueabihf-
 
     - name: Check a kernel output files
       run: |
